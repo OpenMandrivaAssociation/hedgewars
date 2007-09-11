@@ -1,14 +1,14 @@
-Summary: Game with heavyly armed figthing hedgehogs
-Name: hedgewars
-Version: 0.8.1
-Release: %mkrel 1
-License: GPL
-Group: Games/Strategy
-URL: http://www.hedgewars.org/
-Source: %{name}-src-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: fpc qt4-devel SDL_ttf-devel SDL_net-devel
-BuildRequires: SDL_image-devel cmake SDL_mixer-devel  
+Summary:	Game with heavyly armed figthing hedgehogs
+Name:		hedgewars
+Version:	0.8.1
+Release:	%mkrel 2
+License:	GPL
+Group:		Games/Strategy
+URL:		http://www.hedgewars.org/
+Source:		%{name}-src-%{version}.tar.bz2
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires:	fpc qt4-devel SDL_ttf-devel SDL_net-devel
+BuildRequires:	SDL_image-devel cmake SDL_mixer-devel  
 
 %description
 Each player controls a team of several hedgehogs. During the course of the 
@@ -53,7 +53,7 @@ Exec=hedgewars
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=X-MandrivaLinux-MoreApplications-Games-Strategy;Game;ActionGame;StrategyGame;
+Categories=Game;ActionGame;StrategyGame;
 EOF
 
 %clean
