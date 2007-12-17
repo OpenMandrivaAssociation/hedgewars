@@ -6,7 +6,6 @@ License:	GPL
 Group:		Games/Strategy
 URL:		http://www.hedgewars.org/
 Source:		%{name}-src-%{version}.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	fpc qt4-devel SDL_ttf-devel SDL_net-devel
 BuildRequires:	SDL_image-devel cmake SDL_mixer-devel  
 
