@@ -1,7 +1,7 @@
 Summary:	Game with heavyly armed figthing hedgehogs
 Name:		hedgewars
 Version:	0.8.1
-Release:	%mkrel 2
+Release:	%mkrel 4
 License:	GPL
 Group:		Games/Strategy
 URL:		http://www.hedgewars.org/
