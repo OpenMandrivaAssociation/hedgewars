@@ -1,7 +1,7 @@
 Summary:	Game with heavyly armed figthing hedgehogs
 Name:		hedgewars
-Version:	0.8.1
-Release:	%mkrel 4
+Version:	0.9.6
+Release:	%mkrel 1
 License:	GPL
 Group:		Games/Strategy
 URL:		http://www.hedgewars.org/
@@ -37,12 +37,12 @@ when all movement on the battlefield has ceased).
 %setup -q -n %{name}-%{version}
 
 %build
-PATH="/usr/lib/qt4/bin/:$PATH" cmake -DCMAKE_INSTALL_PREFIX="%_prefix"  CMakeLists.txt
+%cmake_qt4
 %make
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall_std
+%makeinstall_std -C build
 mkdir -p %{buildroot}%{_datadir}/applications/
 
 %{__cat} <<EOF >%{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop
@@ -53,7 +53,7 @@ Exec=hedgewars
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=Game;ActionGame;StrategyGame;
+Categories=Game;ActionGame;StrategyGame;Qt;
 EOF
 
 %clean
@@ -71,7 +71,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%_datadir/%{name}/
+%_datadir/%{name}
 %_bindir/*
 %_datadir/applications/*.desktop
 
