@@ -2,13 +2,14 @@ Summary:	Game with heavyly armed figthing hedgehogs
 Name:		hedgewars
 Version:	0.9.6
 Release:	%mkrel 1
-License:	GPL
+License:	GPLv2
 Group:		Games/Strategy
 URL:		http://www.hedgewars.org/
 Source:		%{name}-src-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	fpc qt4-devel SDL_ttf-devel SDL_net-devel
-BuildRequires:	SDL_image-devel cmake SDL_mixer-devel  
+BuildRequires:	SDL_image-devel cmake SDL_mixer-devel
+BuildRequires:	openssl-devel
 
 %description
 Each player controls a team of several hedgehogs. During the course of the 
@@ -74,5 +75,3 @@ EOF
 %_datadir/%{name}
 %_bindir/*
 %_datadir/applications/*.desktop
-
-
