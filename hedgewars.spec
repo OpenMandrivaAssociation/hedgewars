@@ -34,7 +34,7 @@ attacked hedgehog or hedgehogs after a player's or CPU turn is shown only
 when all movement on the battlefield has ceased).
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %name-src-%version
 
 %build
 %cmake_qt4
