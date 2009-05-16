@@ -10,6 +10,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	fpc qt4-devel SDL_ttf-devel SDL_net-devel
 BuildRequires:	SDL_image-devel cmake SDL_mixer-devel
 BuildRequires:	openssl-devel
+BuildRequires:  imagemagick
 
 %description
 Each player controls a team of several hedgehogs. During the course of the 
