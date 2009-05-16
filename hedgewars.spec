@@ -1,11 +1,11 @@
 Summary:	Game with heavyly armed figthing hedgehogs
 Name:		hedgewars
-Version:	0.9.9
+Version:	0.9.10
 Release:	%mkrel 1
 License:	GPLv2
 Group:		Games/Strategy
 URL:		http://www.hedgewars.org/
-Source:		%{name}-src-%{version}.tar.bz2
+Source:		http://download.gna.org/hedgewars/%{name}-src-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	fpc qt4-devel SDL_ttf-devel SDL_net-devel
 BuildRequires:	SDL_image-devel cmake SDL_mixer-devel
@@ -44,13 +44,21 @@ when all movement on the battlefield has ceased).
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall_std -C build
-mkdir -p %{buildroot}%{_datadir}/applications/
 
+mkdir -p %{buildroot}%{_miconsdir}
+convert -resize 16x16 misc/%{name}.png %{buildroot}%{_miconsdir}/%{name}.png
+mkdir -p %{buildroot}%{_liconsdir}
+convert -resize 64x64 misc/%{name}.png %{buildroot}%{_liconsdir}/%{name}.png
+mkdir -p %{buildroot}%{_iconsdir}
+cp misc/%{name}.png %{buildroot}%{_iconsdir}
+
+mkdir -p %{buildroot}%{_datadir}/applications/
 %{__cat} <<EOF >%{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Name=%name
 Comment=Strategy action game
 Exec=hedgewars
+Icon=%name
 Terminal=false
 Type=Application
 StartupNotify=true
@@ -75,3 +83,4 @@ EOF
 %_datadir/%{name}
 %_bindir/*
 %_datadir/applications/*.desktop
+%_iconsdir/*
