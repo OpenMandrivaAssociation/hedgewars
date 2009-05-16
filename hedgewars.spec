@@ -49,7 +49,7 @@ when all movement on the battlefield has ceased).
 mkdir -p %{buildroot}%{_miconsdir}
 convert -resize 16x16 misc/%{name}.png %{buildroot}%{_miconsdir}/%{name}.png
 mkdir -p %{buildroot}%{_liconsdir}
-convert -resize 64x64 misc/%{name}.png %{buildroot}%{_liconsdir}/%{name}.png
+convert -resize 48x48 misc/%{name}.png %{buildroot}%{_liconsdir}/%{name}.png
 mkdir -p %{buildroot}%{_iconsdir}
 cp misc/%{name}.png %{buildroot}%{_iconsdir}
 
