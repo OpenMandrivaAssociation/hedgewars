@@ -11,6 +11,7 @@ BuildRequires:	fpc qt4-devel SDL_ttf-devel SDL_net-devel
 BuildRequires:	SDL_image-devel cmake SDL_mixer-devel
 BuildRequires:	openssl-devel
 BuildRequires:  imagemagick
+BuildRequires:	lua-devel
 
 %description
 Each player controls a team of several hedgehogs. During the course of the 
