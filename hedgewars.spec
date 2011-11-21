@@ -1,6 +1,6 @@
 Summary:	Game with heavyly armed figthing hedgehogs
 Name:		hedgewars
-Version:	0.9.16
+Version:	0.9.17
 Release:	%mkrel 1
 License:	GPLv2
 Group:		Games/Strategy
@@ -10,7 +10,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	fpc qt4-devel SDL_ttf-devel SDL_net-devel
 BuildRequires:	SDL_image-devel cmake SDL_mixer-devel
 BuildRequires:	openssl-devel
-BuildRequires:  imagemagick
+BuildRequires:	imagemagick
 BuildRequires:	lua-devel
 
 %description
@@ -37,7 +37,7 @@ attacked hedgehog or hedgehogs after a player's or CPU turn is shown only
 when all movement on the battlefield has ceased).
 
 %prep
-%setup -q -n %name-src-%version
+%setup -q -n %{name}-src-%{version}
 
 %build
 %cmake_qt4
@@ -57,10 +57,10 @@ cp misc/%{name}.png %{buildroot}%{_iconsdir}
 mkdir -p %{buildroot}%{_datadir}/applications/
 %{__cat} <<EOF >%{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
-Name=%name
+Name=%{name}
 Comment=Strategy action game
 Exec=hedgewars
-Icon=%name
+Icon=%{name}
 Terminal=false
 Type=Application
 StartupNotify=true
@@ -82,7 +82,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%_datadir/%{name}
-%_bindir/*
-%_datadir/applications/*.desktop
-%_iconsdir/*
+%{_datadir}/%{name}
+%{_bindir}/*
+%{_datadir}/applications/*.desktop
+%{_iconsdir}/*
