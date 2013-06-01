@@ -13,6 +13,8 @@ BuildRequires:	fpc
 BuildRequires:	imagemagick
 BuildRequires:	ffmpeg-devel
 BuildRequires:	qt4-devel
+BuildRequires:	pkgconfig(glut)
+BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(lua)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(sdl)
@@ -20,6 +22,7 @@ BuildRequires:	pkgconfig(SDL_image)
 BuildRequires:	pkgconfig(SDL_mixer)
 BuildRequires:	pkgconfig(SDL_net)
 BuildRequires:	pkgconfig(SDL_ttf)
+BuildRequires:	pkgconfig(zlib)
 
 %description
 Each player controls a team of several hedgehogs. During the course of the 
