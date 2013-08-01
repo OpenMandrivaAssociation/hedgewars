@@ -10,11 +10,3 @@ diff -urN hedgewars-src-0.9.19.1-orig/CMakeLists.txt hedgewars-src-0.9.19.1-patc
  endif()
  
  find_package_or_disable_msg(FFMPEG NOVIDEOREC "Video recording will not be built")
-@@ -376,6 +376,5 @@
-     add_subdirectory(tools)
- endif()
- 
--
--include(${CMAKE_MODULE_PATH}/CPackConfig.cmake)
-+include(${CMAKE_MODULE_PATH}/cpackvars.cmake)
- 
