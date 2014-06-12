@@ -1,0 +1,13 @@
+diff -urN hedgewars-src-0.9.20-orig/hedgewars/uVideoRec.pas hedgewars-src-0.9.20-patched/hedgewars/uVideoRec.pas
+--- hedgewars-src-0.9.20-orig/hedgewars/uVideoRec.pas	2014-01-05 06:46:00.000000000 +1100
++++ hedgewars-src-0.9.20-patched/hedgewars/uVideoRec.pas	2014-06-12 03:34:55.613045770 +1100
+@@ -28,6 +28,9 @@
+ {$ELSE}
+ 
+ {$IFNDEF WIN32}
++    {$linklib avcodec}
++    {$linklib avutil}
++    {$linklib avformat}
+     {$linklib avwrapper}
+ {$ENDIF}
+ 

@@ -1,0 +1,11 @@
+diff -urN hedgewars-src-0.9.20-orig/hedgewars/uPhysFSLayer.pas hedgewars-src-0.9.20-patched/hedgewars/uPhysFSLayer.pas
+--- hedgewars-src-0.9.20-orig/hedgewars/uPhysFSLayer.pas	2014-01-09 03:25:17.000000000 +1100
++++ hedgewars-src-0.9.20-patched/hedgewars/uPhysFSLayer.pas	2014-06-12 05:47:33.026974218 +1100
+@@ -7,6 +7,7 @@
+ const PhyslayerLibName = 'libphyslayer';
+ 
+ {$IFNDEF WIN32}
++    {$linklib gcc_s}
+     {$linklib physfs}
+     {$linklib physlayer}
+ {$ENDIF}

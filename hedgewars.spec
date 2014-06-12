@@ -1,12 +1,19 @@
+%define major 0.9.20
+%define minor 5
+
 Summary:	Game with heavily armed fighting hedgehogs
 Name:		hedgewars
-Version:	0.9.19.3
-Release:	1
-License:	GPLv2
+Version:	%{major}.%{minor}
+Release:	10
+License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.hedgewars.org/
 Source0:	http://download.gna.org/hedgewars/%{name}-src-%{version}.tar.bz2
-Patch0:		hedgewars-src-0.9.19.1-cmake.patch
+Patch0:		hedgewars-src-0.9.20-cmake3.patch
+# Used to fix linkage issues when building with -DBUILD_SHARED_LIBS:BOOL=OFF
+Patch1:		hedgewars-src-0.9.20-static.patch
+Patch2:		hedgewars-src-0.9.20.5-gcc_s.patch
+BuildRequires:	chrpath
 BuildRequires:	cmake
 BuildRequires:	fpc
 BuildRequires:	imagemagick
@@ -47,14 +54,29 @@ typically from contact with explosions, to zero (the damage dealt to the
 attacked hedgehog or hedgehogs after a player's or CPU turn is shown only
 when all movement on the battlefield has ceased).
 
+%files
+%{_gamesbindir}/*
+%{_gamesdatadir}/%{name}
+%{_datadir}/applications/*.desktop
+%{_iconsdir}/hicolor/*/apps/%{name}.png
+
+#----------------------------------------------------------------------------
+
 %prep
-%setup -q -n %{name}-src-%{version}
+%setup -q -n %{name}-src-%{major}
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %cmake_qt4 \
-	-DNOSERVER:BOOL=ON
-%make
+	-DNOSERVER:BOOL=ON \
+	-DSYSTEM_PHYSFS:BOOL=OFF \
+	-DBUILD_SHARED_LIBS:BOOL=OFF \
+	-DDATA_INSTALL_DIR="%{_gamesdatadir}/%{name}" \
+	-Dtarget_binary_install_dir="%{_gamesbindir}" \
+	-Dtarget_library_install_dir="%{_libdir}"
+%make VERBOSE=1
 
 %install
 %makeinstall_std -C build
@@ -64,7 +86,7 @@ cat <<EOF >%{buildroot}%{_datadir}/applications/%{name}.desktop
 [Desktop Entry]
 Name=%{name}
 Comment=Strategy action game
-Exec=hedgewars
+Exec=%{_gamesbindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
@@ -75,12 +97,12 @@ EOF
 # install menu icons
 for N in 16 32 48 64 128;
 do
-convert misc/%{name}.png -resize ${N}x${N} $N.png;
+convert --strip misc/%{name}.png -resize ${N}x${N} $N.png;
 install -D -m 0644 $N.png %{buildroot}%{_iconsdir}/hicolor/${N}x${N}/apps/%{name}.png
 done
 
-%files
-%{_bindir}/*
-%{_datadir}/%{name}
-%{_datadir}/applications/*.desktop
-%{_iconsdir}/hicolor/*/apps/%{name}.png
+# Don't package static libs, no use for them
+rm -f %{buildroot}%{_libdir}/*.a
+
+chrpath -d %{buildroot}%{_gamesbindir}/*
+
