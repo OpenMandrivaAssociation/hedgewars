@@ -4,7 +4,7 @@
 Summary:	Game with heavily armed fighting hedgehogs
 Name:		hedgewars
 Version:	%{major}.%{minor}
-Release:	10
+Release:	11
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.hedgewars.org/
