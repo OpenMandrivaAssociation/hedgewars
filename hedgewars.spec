@@ -81,30 +81,31 @@ when all movement on the battlefield has ceased).
 %make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
+
+install -D -m644 misc/%{name}_ico.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+install -D -m644 misc/%{name}.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{name}.png
+rm -rf %{buildroot}%{_datadir}/pixmaps
 
 mkdir -p %{buildroot}%{_datadir}/applications/
 cat <<EOF >%{buildroot}%{_datadir}/applications/%{name}.desktop
 [Desktop Entry]
-Name=%{name}
-Comment=Strategy action game
-Exec=%{_gamesbindir}/%{name}
+Name=Hedgewars
+GenericName=Cartoony artillery game
+Comment=Funny turn-based artillery game, featuring fighting Hedgehogs!
+Exec=%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=Game;ActionGame;StrategyGame;Qt;
+Categories=Game;StrategyGame;Qt;
 EOF
 
-# install menu icons
-for N in 16 32 48 64 128;
-do
-convert --strip misc/%{name}.png -resize ${N}x${N} $N.png;
-install -D -m 0644 $N.png %{buildroot}%{_iconsdir}/hicolor/${N}x${N}/apps/%{name}.png
-done
+install -D -m644 man/%{name}.6 %{buildroot}%{_mandir}/man6/%{name}.6
 
-# Don't package static libs, no use for them
-rm -f %{buildroot}%{_libdir}/*.a
+# remove unneeded devel libraries files
+find %{buildroot} -name '*.so' -delete
+
 
 chrpath -d %{buildroot}%{_gamesbindir}/*
 
