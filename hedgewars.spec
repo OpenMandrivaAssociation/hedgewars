@@ -18,7 +18,6 @@ BuildRequires:	cmake
 BuildRequires:	fpc
 BuildRequires:	imagemagick
 BuildRequires:	ffmpeg-devel
-BuildRequires:	qt4-devel
 BuildRequires:	pkgconfig(glut)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(lua)
