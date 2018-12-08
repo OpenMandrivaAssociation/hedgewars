@@ -1,18 +1,18 @@
-%define major 0.9.20
+%define major 0.9.25
 %define minor 5
 
 Summary:	Game with heavily armed fighting hedgehogs
 Name:		hedgewars
-Version:	%{major}.%{minor}
-Release:	11
+Version:	%{major}
+Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.hedgewars.org/
 Source0:	http://download.gna.org/hedgewars/%{name}-src-%{version}.tar.bz2
-Patch0:		hedgewars-src-0.9.20-cmake3.patch
+#Patch0:		hedgewars-src-0.9.20-cmake3.patch
 # Used to fix linkage issues when building with -DBUILD_SHARED_LIBS:BOOL=OFF
-Patch1:		hedgewars-src-0.9.20-static.patch
-Patch2:		hedgewars-src-0.9.20.5-gcc_s.patch
+#Patch1:		hedgewars-src-0.9.20-static.patch
+#Patch2:		hedgewars-src-0.9.20.5-gcc_s.patch
 BuildRequires:	chrpath
 BuildRequires:	cmake
 BuildRequires:	fpc
@@ -23,11 +23,15 @@ BuildRequires:	pkgconfig(glut)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(lua)
 BuildRequires:	pkgconfig(openssl)
-BuildRequires:	pkgconfig(sdl)
-BuildRequires:	pkgconfig(SDL_image)
-BuildRequires:	pkgconfig(SDL_mixer)
-BuildRequires:	pkgconfig(SDL_net)
-BuildRequires:	pkgconfig(SDL_ttf)
+BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	pkgconfig(Qt5Gui)
+BuildRequires:	pkgconfig(Qt5Help)
+BuildRequires:	pkgconfig(Qt5Network)
+BuildRequires:	pkgconfig(Qt5Widgets)
+BuildRequires:	pkgconfig(SDL2_image)
+BuildRequires:	pkgconfig(SDL2_mixer)
+BuildRequires:	pkgconfig(SDL2_net)
+BuildRequires:	pkgconfig(SDL2_ttf)
 BuildRequires:	pkgconfig(zlib)
 
 %description
@@ -64,19 +68,18 @@ when all movement on the battlefield has ceased).
 
 %prep
 %setup -q -n %{name}-src-%{major}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+#patch0 -p1
+#patch1 -p1
+#patch2 -p1
 
 %build
-%cmake_qt4 \
-	-DNOSERVER:BOOL=ON \
-	-DSYSTEM_PHYSFS:BOOL=OFF \
-	-DBUILD_SHARED_LIBS:BOOL=OFF \
+%cmake_qt5 \
+	-DNOSERVER=TRUE \
 	-DDATA_INSTALL_DIR="%{_gamesdatadir}/%{name}" \
 	-Dtarget_binary_install_dir="%{_gamesbindir}" \
-	-Dtarget_library_install_dir="%{_libdir}"
-%make VERBOSE=1
+	-Dtarget_library_install_dir="%{_libdir}" \
+	-DPHYSFS_SYSTEM=ON
+%make_build
 
 %install
 %makeinstall_std -C build
