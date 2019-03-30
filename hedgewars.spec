@@ -32,6 +32,7 @@ BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(SDL2_net)
 BuildRequires:	pkgconfig(SDL2_ttf)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	qt5-qtbase-devel
 
 %description
 Each player controls a team of several hedgehogs. During the course of the
