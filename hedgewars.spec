@@ -75,6 +75,8 @@ when all movement on the battlefield has ceased).
 #patch2 -p1
 
 %build
+export CC=gcc
+export CXX=g++
 %cmake_qt5 \
 	-DNOSERVER=TRUE \
 	-DDATA_INSTALL_DIR="%{_gamesdatadir}/%{name}" \
