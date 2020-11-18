@@ -16,6 +16,7 @@ BuildRequires:	cmake
 BuildRequires:	fpc
 BuildRequires:	imagemagick
 BuildRequires:	ffmpeg-devel
+BuildRequires:  atomic-devel
 BuildRequires:	pkgconfig(glut)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(lua)
