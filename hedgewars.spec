@@ -6,6 +6,7 @@ License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.hedgewars.org/
 Source0:	http://download.gna.org/hedgewars/%{name}-src-%{version}.tar.bz2
+Patch0:		fix-build-with-qt5.15-openmandriva.patch
 #Patch0:		hedgewars-src-0.9.20-cmake3.patch
 # Used to fix linkage issues when building with -DBUILD_SHARED_LIBS:BOOL=OFF
 #Patch1:		hedgewars-src-0.9.20-static.patch
@@ -67,9 +68,7 @@ when all movement on the battlefield has ceased).
 
 %prep
 %setup -q -n %{name}-src-%{version}
-#patch0 -p1
-#patch1 -p1
-#patch2 -p1
+%autopatch -p1
 
 %build
 %cmake_qt5 \
