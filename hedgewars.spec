@@ -1,9 +1,6 @@
-%define major 0.9.25
-%define minor 5
-
 Summary:	Game with heavily armed fighting hedgehogs
 Name:		hedgewars
-Version:	%{major}
+Version:	1.0.0
 Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
