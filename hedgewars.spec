@@ -7,10 +7,8 @@ Group:		Games/Strategy
 Url:		http://www.hedgewars.org/
 Source0:	http://download.gna.org/hedgewars/%{name}-src-%{version}.tar.bz2
 Patch0:		fix-build-with-qt5.15-openmandriva.patch
-#Patch0:		hedgewars-src-0.9.20-cmake3.patch
-# Used to fix linkage issues when building with -DBUILD_SHARED_LIBS:BOOL=OFF
-#Patch1:		hedgewars-src-0.9.20-static.patch
-#Patch2:		hedgewars-src-0.9.20.5-gcc_s.patch
+Patch1:		hedgewars-1.0.0-disable-pas2c.patch
+Patch2:		hedgewars-hg-fix-fpc-3.2.0-ice.patch
 BuildRequires:	chrpath
 BuildRequires:	cmake
 BuildRequires:	fpc
