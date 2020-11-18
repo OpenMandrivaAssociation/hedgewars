@@ -66,7 +66,7 @@ when all movement on the battlefield has ceased).
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q -n %{name}-src-%{major}
+%setup -q -n %{name}-src-%{version}
 #patch0 -p1
 #patch1 -p1
 #patch2 -p1
