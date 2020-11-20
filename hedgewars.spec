@@ -75,7 +75,8 @@ when all movement on the battlefield has ceased).
 	-DDATA_INSTALL_DIR="%{_gamesdatadir}/%{name}" \
 	-Dtarget_binary_install_dir="%{_gamesbindir}" \
 	-Dtarget_library_install_dir="%{_libdir}" \
-	-DPHYSFS_SYSTEM=ON
+	-DPHYSFS_SYSTEM=ON \
+	-DBUILD_ENGINE_C=$(BUILD_ENGINE_C)
 %make_build
 
 %install
