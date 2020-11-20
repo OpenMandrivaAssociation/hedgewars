@@ -11,7 +11,7 @@ Patch1:		hedgewars-1.0.0-disable-pas2c.patch
 Patch2:		hedgewars-hg-fix-fpc-3.2.0-ice.patch
 BuildRequires:	chrpath
 BuildRequires:	cmake
-BuildRequires:	fpc
+#BuildRequires:	fpc
 BuildRequires:	imagemagick
 BuildRequires:	ffmpeg-devel
 BuildRequires:  atomic-devel
