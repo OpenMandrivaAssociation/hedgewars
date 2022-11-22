@@ -1,6 +1,6 @@
 Summary:	Game with heavily armed fighting hedgehogs
 Name:		hedgewars
-Version:	1.0.0
+Version:	1.0.2
 Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
