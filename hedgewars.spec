@@ -81,7 +81,7 @@ when all movement on the battlefield has ceased).
 	-DNOSERVER=TRUE \
 	-DDATA_INSTALL_DIR="%{_datadir}/%{name}" \
 	-Dtarget_binary_install_dir="%{_bindir}" \
-	-Dtarget_library_install_dir="%{_libdir}/" \
+	-Dtarget_library_install_dir="%{_libdir}" \
 	-DPHYSFS_SYSTEM=ON \
 	-DLUA_SYSTEM=OFF
 %make_build
