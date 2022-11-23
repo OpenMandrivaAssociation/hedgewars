@@ -1,3 +1,4 @@
+%define _disable_ld_no_undefined 1
 Summary:	Game with heavily armed fighting hedgehogs
 Name:		hedgewars
 Version:	1.0.2
