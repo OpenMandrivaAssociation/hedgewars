@@ -1,0 +1,13 @@
+Index: hedgewars-src-1.0.0/CMakeLists.txt
+===================================================================
+--- hedgewars-src-1.0.0/CMakeLists.txt
++++ hedgewars-src-1.0.0/CMakeLists.txt	2020-10-19 11:59:32.873160308 +0200
+@@ -80,7 +80,7 @@
+ endif()
+ 
+ if("${CMAKE_SIZEOF_VOID_P}" EQUAL "4" AND UNIX AND NOT APPLE)
+-    set(BUILD_ENGINE_C ON CACHE STRING "PAS2C force-enabled due to a freepascal 32 bit alignment bug" FORCE)
++    #set(BUILD_ENGINE_C ON CACHE STRING "PAS2C force-enabled due to a freepascal 32 bit alignment bug" FORCE)
+ endif()
+ 
+ #system paths for finding required fonts (see share/hedgewars/Data/fonts)

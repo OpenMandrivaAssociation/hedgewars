@@ -1,34 +1,38 @@
-%define major 0.9.20
-%define minor 5
-
+%define _disable_ld_no_undefined 1
 Summary:	Game with heavily armed fighting hedgehogs
 Name:		hedgewars
-Version:	%{major}.%{minor}
-Release:	11
+Version:	1.0.2
+Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.hedgewars.org/
 Source0:	http://download.gna.org/hedgewars/%{name}-src-%{version}.tar.bz2
-Patch0:		hedgewars-src-0.9.20-cmake3.patch
-# Used to fix linkage issues when building with -DBUILD_SHARED_LIBS:BOOL=OFF
-Patch1:		hedgewars-src-0.9.20-static.patch
-Patch2:		hedgewars-src-0.9.20.5-gcc_s.patch
+Patch1:		hedgewars-1.0.0-disable-pas2c.patch
 BuildRequires:	chrpath
 BuildRequires:	cmake
 BuildRequires:	fpc
 BuildRequires:	imagemagick
-BuildRequires:	ffmpeg-devel
-BuildRequires:	qt4-devel
+# Ffmpeg 5 is still not supported
+BuildRequires:	ffmpeg4-devel
+BuildRequires:  atomic-devel
 BuildRequires:	pkgconfig(glut)
 BuildRequires:	pkgconfig(libpng)
-BuildRequires:	pkgconfig(lua)
+# Luad 5.1 is needed. Thats why we use bundled one.
+#BuildRequires:	pkgconfig(lua)
 BuildRequires:	pkgconfig(openssl)
-BuildRequires:	pkgconfig(sdl)
-BuildRequires:	pkgconfig(SDL_image)
-BuildRequires:	pkgconfig(SDL_mixer)
-BuildRequires:	pkgconfig(SDL_net)
-BuildRequires:	pkgconfig(SDL_ttf)
+BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	pkgconfig(Qt5Gui)
+BuildRequires:	pkgconfig(Qt5Help)
+BuildRequires:	pkgconfig(Qt5Network)
+BuildRequires:	pkgconfig(Qt5Widgets)
+BuildRequires:	pkgconfig(SDL2_image)
+BuildRequires:	pkgconfig(SDL2_mixer)
+BuildRequires:	pkgconfig(SDL2_net)
+BuildRequires:	pkgconfig(SDL2_ttf)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	qt5-qtbase-devel
+BuildRequires:	pkgconfig(physfs)
+BuildRequires:	cmake(Qt5LinguistTools)
 
 %description
 Each player controls a team of several hedgehogs. During the course of the
@@ -55,54 +59,59 @@ attacked hedgehog or hedgehogs after a player's or CPU turn is shown only
 when all movement on the battlefield has ceased).
 
 %files
-%{_gamesbindir}/*
-%{_gamesdatadir}/%{name}
+%{_bindir}/*
+%{_datadir}/%{name}
 %{_datadir}/applications/*.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_libdir}/libavwrapper.so.1.0
+%{_libdir}/libhwlua.so.1*
+%{_libdir}/libhwlua.so.5.1.4
+%{_libdir}/libphyslayer.so.1.0
+%{_datadir}/appdata/hedgewars.appdata.xml
+%{_mandir}/man6/hedgewars.6*
 
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q -n %{name}-src-%{major}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%setup -q -n %{name}-src-%{version}
+%autopatch -p1
 
 %build
-%cmake_qt4 \
-	-DNOSERVER:BOOL=ON \
-	-DSYSTEM_PHYSFS:BOOL=OFF \
-	-DBUILD_SHARED_LIBS:BOOL=OFF \
-	-DDATA_INSTALL_DIR="%{_gamesdatadir}/%{name}" \
-	-Dtarget_binary_install_dir="%{_gamesbindir}" \
-	-Dtarget_library_install_dir="%{_libdir}"
-%make VERBOSE=1
+%cmake_qt5 \
+	-DNOSERVER=TRUE \
+	-DDATA_INSTALL_DIR="%{_datadir}/%{name}" \
+	-Dtarget_binary_install_dir="%{_bindir}" \
+	-Dtarget_library_install_dir="%{_libdir}" \
+	-DPHYSFS_SYSTEM=ON \
+	-DLUA_SYSTEM=OFF
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
+
+install -D -m644 misc/%{name}_ico.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+install -D -m644 misc/%{name}.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/%{name}.png
+rm -rf %{buildroot}%{_datadir}/pixmaps
 
 mkdir -p %{buildroot}%{_datadir}/applications/
 cat <<EOF >%{buildroot}%{_datadir}/applications/%{name}.desktop
 [Desktop Entry]
-Name=%{name}
-Comment=Strategy action game
-Exec=%{_gamesbindir}/%{name}
+Name=Hedgewars
+GenericName=Cartoony artillery game
+Comment=Funny turn-based artillery game, featuring fighting Hedgehogs!
+Exec=%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=Game;ActionGame;StrategyGame;Qt;
+Categories=Game;StrategyGame;Qt;
 EOF
 
-# install menu icons
-for N in 16 32 48 64 128;
-do
-convert --strip misc/%{name}.png -resize ${N}x${N} $N.png;
-install -D -m 0644 $N.png %{buildroot}%{_iconsdir}/hicolor/${N}x${N}/apps/%{name}.png
-done
+install -D -m644 man/%{name}.6 %{buildroot}%{_mandir}/man6/%{name}.6
 
-# Don't package static libs, no use for them
-rm -f %{buildroot}%{_libdir}/*.a
+# remove unneeded devel libraries files
+find %{buildroot} -name '*.so' -delete
 
-chrpath -d %{buildroot}%{_gamesbindir}/*
+
+chrpath -d %{buildroot}%{_bindir}/*
 

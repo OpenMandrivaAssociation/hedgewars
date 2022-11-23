@@ -1,0 +1,11 @@
+diff -uraN hedgewars-src-1.0.0/QTfrontend/ui/page/pagegamestats.cpp omv-hedgewars-src-1.0.0/QTfrontend/ui/page/pagegamestats.cpp
+--- hedgewars-src-1.0.0/QTfrontend/ui/page/pagegamestats.cpp	2019-07-30 18:58:48.000000000 +0200
++++ omv-hedgewars-src-1.0.0/QTfrontend/ui/page/pagegamestats.cpp	2020-11-18 19:19:08.074338604 +0100
+@@ -22,6 +22,7 @@
+ #include <QGraphicsScene>
+ #include <QGroupBox>
+ #include <QSizePolicy>
++#include <QPainterPath>
+ 
+ #include "pagegamestats.h"
+ #include "team.h"
