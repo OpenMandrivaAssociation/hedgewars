@@ -18,7 +18,7 @@ BuildRequires:	ffmpeg4-devel
 BuildRequires:  atomic-devel
 BuildRequires:	pkgconfig(glut)
 BuildRequires:	pkgconfig(libpng)
-BuildRequires:	pkgconfig(lua)
+#BuildRequires:	pkgconfig(lua)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Gui)
@@ -76,7 +76,8 @@ when all movement on the battlefield has ceased).
 	-DDATA_INSTALL_DIR="%{_gamesdatadir}/%{name}" \
 	-Dtarget_binary_install_dir="%{_gamesbindir}" \
 	-Dtarget_library_install_dir="%{_libdir}" \
-	-DPHYSFS_SYSTEM=ON
+	-DPHYSFS_SYSTEM=ON \
+	-DLUA_SYSTEM=OFF
 %make_build
 
 %install
