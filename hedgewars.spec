@@ -7,9 +7,7 @@ License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.hedgewars.org/
 Source0:	http://download.gna.org/hedgewars/%{name}-src-%{version}.tar.bz2
-#Patch0:		fix-build-with-qt5.15-openmandriva.patch
 Patch1:		hedgewars-1.0.0-disable-pas2c.patch
-#Patch2:		hedgewars-hg-fix-fpc-3.2.0-ice.patch
 BuildRequires:	chrpath
 BuildRequires:	cmake
 BuildRequires:	fpc
@@ -59,8 +57,8 @@ attacked hedgehog or hedgehogs after a player's or CPU turn is shown only
 when all movement on the battlefield has ceased).
 
 %files
-%{_gamesbindir}/*
-%{_gamesdatadir}/%{name}
+%{_bindir}/*
+%{_datadir}/%{name}
 %{_datadir}/applications/*.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_libdir}/libavwrapper.so.1.0
@@ -79,9 +77,9 @@ when all movement on the battlefield has ceased).
 %build
 %cmake_qt5 \
 	-DNOSERVER=TRUE \
-	-DDATA_INSTALL_DIR="%{_gamesdatadir}/%{name}" \
-	-Dtarget_binary_install_dir="%{_gamesbindir}" \
-	-Dtarget_library_install_dir="%{_libdir}" \
+	-DDATA_INSTALL_DIR="%{_datadir}/%{name}" \
+	-Dtarget_binary_install_dir="%{_bindir}" \
+	-Dtarget_library_install_dir="%{_libdir}/%{name}" \
 	-DPHYSFS_SYSTEM=ON \
 	-DLUA_SYSTEM=OFF
 %make_build
