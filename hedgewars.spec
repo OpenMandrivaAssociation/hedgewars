@@ -12,10 +12,12 @@ BuildRequires:	chrpath
 BuildRequires:	cmake
 BuildRequires:	fpc
 BuildRequires:	imagemagick
+# Ffmpeg 5 is still not supported
 BuildRequires:	ffmpeg4-devel
 BuildRequires:  atomic-devel
 BuildRequires:	pkgconfig(glut)
 BuildRequires:	pkgconfig(libpng)
+# Luad 5.1 is needed. Thats why we use bundled one.
 #BuildRequires:	pkgconfig(lua)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(Qt5Core)
@@ -61,10 +63,10 @@ when all movement on the battlefield has ceased).
 %{_datadir}/%{name}
 %{_datadir}/applications/*.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
-%{_libdir}/%{name}/libavwrapper.so.1.0
-%{_libdir}/%{name}/libhwlua.so.1*
-%{_libdir}/%{name}/libhwlua.so.5.1.4
-%{_libdir}/%{name}/libphyslayer.so.1.0
+%{_libdir}/libavwrapper.so.1.0
+%{_libdir}/libhwlua.so.1*
+%{_libdir}/libhwlua.so.5.1.4
+%{_libdir}/libphyslayer.so.1.0
 %{_datadir}/appdata/hedgewars.appdata.xml
 %{_mandir}/man6/hedgewars.6*
 
@@ -79,7 +81,7 @@ when all movement on the battlefield has ceased).
 	-DNOSERVER=TRUE \
 	-DDATA_INSTALL_DIR="%{_datadir}/%{name}" \
 	-Dtarget_binary_install_dir="%{_bindir}" \
-	-Dtarget_library_install_dir="%{_libdir}/%{name}" \
+	-Dtarget_library_install_dir="%{_libdir}/" \
 	-DPHYSFS_SYSTEM=ON \
 	-DLUA_SYSTEM=OFF
 %make_build
