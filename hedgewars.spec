@@ -111,5 +111,5 @@ install -D -m644 man/%{name}.6 %{buildroot}%{_mandir}/man6/%{name}.6
 find %{buildroot} -name '*.so' -delete
 
 
-chrpath -d %{buildroot}%{_gamesbindir}/*
+chrpath -d %{buildroot}%{_bindir}/*
 
