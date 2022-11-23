@@ -63,6 +63,11 @@ when all movement on the battlefield has ceased).
 %{_gamesdatadir}/%{name}
 %{_datadir}/applications/*.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_libdir}/libavwrapper.so.1.0
+%{_libdir}/libhwlua.so.1*
+%{_libdir}/libphyslayer.so.1.0
+%{_datadir}/appdata/hedgewars.appdata.xml
+%{_mandir}/man6/hedgewars.6*
 
 #----------------------------------------------------------------------------
 
