@@ -13,7 +13,7 @@ BuildRequires:	chrpath
 BuildRequires:	cmake
 BuildRequires:	fpc
 BuildRequires:	imagemagick
-BuildRequires:	ffmpeg-devel
+BuildRequires:	ffmpeg4-devel
 BuildRequires:  atomic-devel
 BuildRequires:	pkgconfig(glut)
 BuildRequires:	pkgconfig(libpng)
