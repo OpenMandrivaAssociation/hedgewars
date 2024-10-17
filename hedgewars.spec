@@ -5,7 +5,7 @@ Version:	1.0.2
 Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
-Url:		http://www.hedgewars.org/
+Url:		https://www.hedgewars.org/
 Source0:	http://download.gna.org/hedgewars/%{name}-src-%{version}.tar.bz2
 Patch1:		hedgewars-1.0.0-disable-pas2c.patch
 BuildRequires:	chrpath
