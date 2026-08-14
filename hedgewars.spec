@@ -2,12 +2,13 @@
 Summary:	Game with heavily armed fighting hedgehogs
 Name:		hedgewars
 Version:	1.0.2
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		https://www.hedgewars.org/
 Source0:	http://download.gna.org/hedgewars/%{name}-src-%{version}.tar.bz2
 Patch1:		hedgewars-1.0.0-disable-pas2c.patch
+Patch2:		hedgewars-1.0.2-ffmpeg9.patch
 BuildRequires:	chrpath
 BuildRequires:	cmake
 BuildRequires:	fpc
