@@ -2,7 +2,7 @@
 Summary:	Game with heavily armed fighting hedgehogs
 Name:		hedgewars
 Version:	1.0.2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		https://www.hedgewars.org/
@@ -12,8 +12,11 @@ BuildRequires:	chrpath
 BuildRequires:	cmake
 BuildRequires:	fpc
 BuildRequires:	imagemagick
-# Ffmpeg 5 is still not supported
-BuildRequires:	ffmpeg4-devel
+BuildRequires:	pkgconfig(libavcodec)
+BuildRequires:	pkgconfig(libavformat)
+BuildRequires:	pkgconfig(libavutil)
+BuildRequires:	pkgconfig(libswscale)
+BuildRequires:	pkgconfig(libswresample)
 BuildRequires:  atomic-devel
 BuildRequires:	pkgconfig(glut)
 BuildRequires:	pkgconfig(libpng)
