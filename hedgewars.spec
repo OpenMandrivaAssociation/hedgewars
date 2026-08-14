@@ -9,6 +9,7 @@ Url:		https://www.hedgewars.org/
 Source0:	https://www.hedgewars.org/download/releases/%{name}-src-%{version}.tar.bz2
 Patch1:		hedgewars-1.0.0-disable-pas2c.patch
 Patch2:		hedgewars-1.0.3-ffmpeg9.patch
+Patch3:		hedgewars-1.0.3-cmake-lua-location.patch
 BuildRequires:	chrpath
 BuildRequires:	cmake
 BuildRequires:	fpc
